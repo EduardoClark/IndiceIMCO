@@ -18,7 +18,7 @@ colnames(Data) <- c("Region", "Year", Indicadores[1])
 Data$General_FBCF_constante.csv <- as.numeric(gsub(pattern=",", replacement="", x=Data$General_FBCF_constante.csv))
 
 #Loop for remaining variables
-for(i in 2:15){
+for(i in 2:14){
   Name <- paste(reader, Indicadores[i], sep="")
   Transitory <- read.delim(Name, encoding="UTF-8")
   Transitory1 <- read.csv(Name)
