@@ -7,20 +7,21 @@
 ##### Set Up 
 ## Reshape Data
 #Load Data
-reader <- "data/IndInt/Indicadores/Economia/" ## Name directory for db extraction
+reader <- "data/IndInt/Indicadores/Pisa/" ## Name directory for db extraction
 Indicadores <- c(list.files(reader))
 #Compile basic dataframe
 Name <- paste(reader, Indicadores[1], sep="") 
-Data <- read.csv(Name, encoding="Latin-1") ## Load first indicator and db
+Data <- read.delim(Name, encoding="Latin-1") ## Load first indicator and db
 Data <- melt(data=Data, id="Region")
 IndicatorNames <- strsplit(Indicadores, ".csv")
 colnames(Data) <- c("Region", "Year", Indicadores[1])
+
 #Loop for remaining variables
-for(i in 2:15){
+for(i in 2:6){
   Name <- paste(reader, Indicadores[i], sep="")
   Transitory <- read.delim(Name, encoding="UTF-8")
   Transitory1 <- read.csv(Name)
-  Transitory <- tryCatch(melt(data=Transitory, id="Region"), error = function(e) Transitory1 )
+  Transitory <- tryCatch(melt(data=Transitory, id="Region"), error = function(e) Transitory1 )  
   tryCatch(Transitory <- melt(data=Transitory, id="Region"), warning = function(e) NULL)
   Transitory$value <- as.numeric(gsub(pattern=",", replacement="", x=Transitory$value))
   colnames(Transitory) <- c("Region", "Year", IndicatorNames[i])  

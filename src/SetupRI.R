@@ -7,7 +7,7 @@
 ##### Set Up 
 ## Reshape Data
 #Load Data
-reader <- "data/IndInt/Indicadores/Economia/" ## Name directory for db extraction
+reader <- "/home/eduardo/R/IndiceIMCO/data/IndInt/Indicadores/RelInt/" ## Name directory for db extraction
 Indicadores <- c(list.files(reader))
 #Compile basic dataframe
 Name <- paste(reader, Indicadores[1], sep="") 
